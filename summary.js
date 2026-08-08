@@ -94,6 +94,35 @@
         Save Round &mdash; Coming in Step 5
       </button>
     `;
+// ---- Step 5: Save Round Wiring ----
+    const saveRoundBtn = document.getElementById('save-round-btn');
+    if (saveRoundBtn) {
+      saveRoundBtn.disabled = false;
+      saveRoundBtn.textContent = 'Save Round';
+      
+      saveRoundBtn.addEventListener('click', async () => {
+        saveRoundBtn.disabled = true;
+        saveRoundBtn.textContent = 'Saving…';
+        try {
+          // Grab the session data from the global window object
+          const sessionData = window.roundSession || {
+            course: courseName,
+            holeCount: holeCount,
+            player: 'Lwando',
+            date: new Date().toISOString().slice(0,10)
+          };
+          
+          await saveRoundToDB(sessionData, holes);
+          saveRoundBtn.textContent = 'Saved ✓';
+        } catch (err) {
+          console.error('Failed to save round:', err);
+          saveRoundBtn.textContent = 'Save Round';
+          saveRoundBtn.disabled = false;
+          alert('Could not save this round. Please try again.');
+        }
+      });
+    }
+
   }
 
   function initSummary(courseName, holeCount, holes) {

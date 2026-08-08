@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="scorecard.css">
     <link rel="stylesheet" href="summary.css">
+    <link rel="stylesheet" href="history.css">
 </head>
 
 <body>
@@ -177,6 +178,11 @@
                 Start round
             </button>
             <p class="cta-hint" id="cta-hint">Select a course to continue</p>
+            <div style="text-align: center; margin-top: 14px;">
+                <a href="#" id="past-rounds-btn"
+                    style="color: var(--sand); font-family: var(--font-mono); font-size: 12px; text-decoration: underline; text-underline-offset: 2px;">View
+                    Past Rounds</a>
+            </div>
         </div>
 
         <div class="toast" id="toast" role="status" aria-live="polite">
@@ -185,6 +191,22 @@
         </div>
 
     </div>
+
+
+<!-- ================= ROUND HISTORY ================= -->
+<div class="screen" id="history-screen">
+    <header>
+        <p class="eyebrow">Golf Tracker</p>
+        <h1>Past Rounds</h1>
+        <p class="subhead"><a href="#" id="history-back-link">&larr; Back to course selection</a></p>
+    </header>
+    <main id="history-main" style="padding-top: 10px;">
+        <div id="history-empty" class="history-empty" style="display:none;">
+            <p>No rounds saved yet. Finish a round and tap "Save Round" to see it here.</p>
+        </div>
+        <div id="history-list" class="history-list"></div>
+    </main>
+</div>
 
     <!-- ================= STEP 2: LIVE SCORECARD ================= -->
     <div class="screen" id="screen-scorecard">
@@ -371,6 +393,22 @@ const screenSummary   = document.getElementById('screen-summary');
 
     <!-- Step 2 module -->
     <script src="scorecard.js"></script>
+    <script src="db.js"></script>
+    <script src="history.js"></script>
+    <script>
+        document.getElementById('past-rounds-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            renderHistoryScreen();
+            document.getElementById('screen-course-select').classList.remove('active');
+            document.getElementById('history-screen').classList.add('active');
+        });
+
+        document.getElementById('history-back-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('history-screen').classList.remove('active');
+            document.getElementById('screen-course-select').classList.add('active');
+        });
+    </script>
 </body>
 
 </html>
