@@ -14,9 +14,16 @@
 </head>
 
 <body>
+<!-- ================= SPLASH SCREEN ================= -->
+<div class="screen active" id="screen-splash"
+    style="background: var(--fairway); color: var(--turf-card); justify-content: center; align-items: center; text-align: center; padding: 20px;">
+    <h1 id="splash-pun" style="font-size: 2.2rem; line-height: 1.2; margin-bottom: 12px;"></h1>
+    <p style="color: var(--sand); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em;">Golf
+        Tracker</p>
+</div>
 
-    <!-- ================= STEP 1: ROUND SETUP (course + hole count) ================= -->
-    <div class="screen active" id="screen-course-select">
+<!-- ================= STEP 1: ROUND SETUP (course + hole count) ================= -->
+<div class="screen" id="screen-course-select">
 
         <header>
             <p class="eyebrow">Golf Tracker · Round Setup</p>
@@ -192,6 +199,42 @@
     </div>
 
     <script>
+      // ---- Splash Screen Logic ----
+        const puns = [
+                "May the course be with you.",
+                "Let's get this par-ty started.",
+                "Talk birdie to me.",
+                "Sub-par performance expected.",
+                "It takes a lot of balls to golf like this.",
+                "Time to get on the green.",
+                "I like big putts and I cannot lie.",
+                "Who's your caddy?",
+                "Looking fore-ward to it.",
+                "That's a fairway to go.",
+                "Grip it and rip it.",
+                "Slice, slice, baby.",
+                "A fairway to heaven.",
+                "You're the hole package.",
+                "Drive it like you stole it.",
+                "To tee or not to tee.",
+                "Putt-ing in the work.",
+                "Ironing out the details.",
+                "A stroke of genius.",
+                "Un-fore-gettable!",
+                "I'm hooked on this game.",
+                "Stay out of the sand trap.",
+                "Birdie hunting.",
+                "Tee-rific!",
+                "Don't lose your drive."
+            ];
+
+        document.getElementById('splash-pun').textContent = puns[Math.floor(Math.random() * puns.length)];
+
+        setTimeout(() => {
+            document.getElementById('screen-splash').classList.remove('active');
+            document.getElementById('screen-course-select').classList.add('active');
+        }, 2500); // 2.5 seconds
+
         // ---- Step 1: in-memory round session ----
         const roundSession = { course: null, holeCount: 9, date: null, player: "Lwando", started: false };
 
