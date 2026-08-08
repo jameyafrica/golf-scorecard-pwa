@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+    <title>Round Setup — Golf Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap"
+        rel="stylesheet">
+    <!-- Link to your new CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="screen">
+        <header>
+            <p class="eyebrow">Golf Tracker · Round Setup</p>
+            <h1>Choose your course</h1>
+            <p class="subhead">Select where you're playing today. Your round starts as soon as you tee off.</p>
+        </header>
+
+        <main>
+            <p class="section-label"><span class="num">1</span> Course</p>
+
+            <form id="course-form">
+                <div class="course-list">
+                    <label class="course-option">
+                        <input type="radio" name="course" value="Hazendal Golf Course">
+                        <span class="course-card">
+                            <span class="hole-mark">HZ</span>
+                            <span class="course-copy">
+                                <p class="course-name">Hazendal Golf Course</p>
+                                <p class="course-meta">18 holes · Par 72</p>
+                            </span>
+                            <svg class="check-flag" viewBox="0 0 24 24" fill="none">
+                                <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
+                                    stroke-linejoin="round" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                    </label>
+
+                    <label class="course-option">
+                        <input type="radio" name="course" value="Randburg Golf Club">
+                        <span class="course-card">
+                            <span class="hole-mark">RB</span>
+                            <span class="course-copy">
+                                <p class="course-name">Randburg Golf Club</p>
+                                <p class="course-meta">18 holes · Par 71</p>
+                            </span>
+                            <svg class="check-flag" viewBox="0 0 24 24" fill="none">
+                                <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
+                                    stroke-linejoin="round" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                    </label>
+
+                    <label class="course-option">
+                        <input type="radio" name="course" value="Rondebosch Golf Club">
+                        <span class="course-card">
+                            <span class="hole-mark">RC</span>
+                            <span class="course-copy">
+                                <p class="course-name">Rondebosch Golf Club</p>
+                                <p class="course-meta">18 holes · Par 70</p>
+                            </span>
+                            <svg class="check-flag" viewBox="0 0 24 24" fill="none">
+                                <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
+                                    stroke-linejoin="round" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                    </label>
+
+                    <label class="course-option">
+                        <input type="radio" name="course" value="__custom__" id="custom-radio">
+                        <span class="course-card">
+                            <span class="hole-mark">+</span>
+                            <span class="course-copy">
+                                <p class="course-name">Other course</p>
+                                <p class="course-meta">Type in a name</p>
+                            </span>
+                            <svg class="check-flag" viewBox="0 0 24 24" fill="none">
+                                <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
+                                    stroke-linejoin="round" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <div class="custom-reveal">
+                            <input class="custom-input" type="text" id="custom-name"
+                                placeholder="e.g. Milnerton Golf Club" maxlength="60" autocomplete="off">
+                        </div>
+                    </label>
+                </div>
+
+                <dl class="ledger">
+                    <div>
+                        <dt>Date</dt>
+                        <dd id="today-date">—</dd>
+                    </div>
+                    <div>
+                        <dt>Player</dt>
+                        <dd>Lwando</dd>
+                    </div>
+                </dl>
+            </form>
+        </main>
+
+        <div class="cta-dock">
+            <button id="start-round" type="button" disabled>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 3v18M6 3h11l-2.5 3.5L17 10H6" stroke="currentColor" stroke-width="2"
+                        stroke-linejoin="round" stroke-linecap="round" />
+                </svg>
+                Start round
+            </button>
+            <p class="cta-hint" id="cta-hint">Select a course to continue</p>
+        </div>
+
+        <div class="toast" id="toast" role="status" aria-live="polite">
+            <strong id="toast-title"></strong>
+            <span class="toast-sub">Round session initialized in memory — Screen 2 (Scorecard) is not yet built.</span>
+        </div>
+
+    </div>
+
+    <!-- Link to your new JS file -->
+    <script src="app.js"></script>
+</body>
+
+</html>

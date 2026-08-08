@@ -1,0 +1,391 @@
+:root {
+    --fairway: #17352A;
+    /* deep fairway green, headers/nav */
+    --fairway-deep: #0E241C;
+    /* near-black green, body text */
+    --turf-card: #FBF8EF;
+    /* cream card, max daylight contrast */
+    --sand: #C9BB98;
+    /* rule lines, dividers, borders */
+    --flag-red: #C1401F;
+    /* single accent — CTA + flag mark */
+    --paper: #F1ECDC;
+    /* page background */
+    --ok-green: #2F6B45;
+    --shadow: 0 1px 0 rgba(14, 36, 28, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--paper);
+    background-image:
+        repeating-linear-gradient(180deg, transparent 0 39px, rgba(14, 36, 28, 0.045) 39px 40px);
+    color: var(--fairway-deep);
+    font-family: 'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.screen {
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: var(--fairway);
+    color: var(--turf-card);
+    padding: 22px 20px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 5px;
+    background: repeating-linear-gradient(90deg, var(--flag-red) 0 14px, transparent 14px 26px);
+    opacity: .85;
+}
+
+.eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin: 0 0 6px;
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.05;
+}
+
+.subhead {
+    font-size: 14px;
+    color: var(--sand);
+    margin: 8px 0 0;
+    max-width: 34ch;
+}
+
+main {
+    flex: 1;
+    padding: 22px 20px 120px;
+}
+
+.section-label {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--fairway);
+    margin: 0 0 14px;
+}
+
+.section-label .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--flag-red);
+    border: 1px solid var(--flag-red);
+    border-radius: 2px;
+    padding: 1px 6px;
+}
+
+.section-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--sand);
+}
+
+.course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.course-option {
+    position: relative;
+}
+
+.course-option input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    margin: 0;
+}
+
+.course-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--turf-card);
+    border: 1.5px solid var(--sand);
+    border-radius: 6px;
+    padding: 16px 16px;
+    box-shadow: var(--shadow);
+    transition: border-color .12s ease, background .12s ease, transform .08s ease;
+}
+
+.course-option input:checked+.course-card {
+    border-color: var(--fairway);
+    background: #F3F0DF;
+}
+
+.course-option input:focus-visible+.course-card {
+    outline: 3px solid var(--flag-red);
+    outline-offset: 2px;
+}
+
+.course-option input:active+.course-card {
+    transform: scale(0.99);
+}
+
+.hole-mark {
+    flex: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--fairway);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--fairway);
+    transition: background .12s ease, color .12s ease;
+}
+
+.course-option input:checked+.course-card .hole-mark {
+    background: var(--fairway);
+    color: var(--turf-card);
+}
+
+.course-copy {
+    flex: 1;
+    min-width: 0;
+}
+
+.course-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 16.5px;
+    letter-spacing: .01em;
+    margin: 0 0 2px;
+}
+
+.course-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: #5B6B5F;
+    margin: 0;
+}
+
+.check-flag {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transition: opacity .12s ease;
+}
+
+.course-option input:checked+.course-card .check-flag {
+    opacity: 1;
+}
+
+.custom-reveal {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .18s ease;
+}
+
+.course-option input:checked~.custom-reveal {
+    max-height: 70px;
+}
+
+.custom-input {
+    margin-top: 10px;
+    width: 100%;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    padding: 13px 14px;
+    border: 1.5px solid var(--sand);
+    border-radius: 6px;
+    background: var(--turf-card);
+    color: var(--fairway-deep);
+}
+
+.custom-input:focus {
+    outline: none;
+    border-color: var(--flag-red);
+}
+
+.custom-input::placeholder {
+    color: #9AA394;
+}
+
+.ledger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--turf-card);
+    border: 1.5px solid var(--sand);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-top: 26px;
+}
+
+.ledger dt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #5B6B5F;
+    margin: 0 0 3px;
+}
+
+.ledger dd {
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.ledger>div {
+    text-align: left;
+}
+
+.ledger>div:last-child {
+    text-align: right;
+}
+
+.cta-dock {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 14px 20px calc(18px + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgba(241, 236, 220, 0) 0%, var(--paper) 28%);
+}
+
+#start-round {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--flag-red);
+    color: #FBF8EF;
+    border: none;
+    border-radius: 8px;
+    padding: 17px 18px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 14px rgba(193, 64, 31, 0.32);
+    transition: opacity .12s ease, transform .08s ease;
+}
+
+#start-round:disabled {
+    background: #B8AF95;
+    box-shadow: none;
+    opacity: .75;
+}
+
+#start-round:not(:disabled):active {
+    transform: scale(0.98);
+}
+
+#start-round:focus-visible {
+    outline: 3px solid var(--fairway);
+    outline-offset: 3px;
+}
+
+.cta-hint {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #5B6B5F;
+    margin: 8px 0 0;
+}
+
+.toast {
+    position: fixed;
+    left: 20px;
+    right: 20px;
+    bottom: -120px;
+    max-width: 440px;
+    margin: 0 auto;
+    background: var(--fairway);
+    color: var(--turf-card);
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    box-shadow: 0 10px 30px rgba(14, 36, 28, 0.35);
+    transition: bottom .28s cubic-bezier(.2, .8, .2, 1);
+    z-index: 10;
+}
+
+.toast.show {
+    bottom: 24px;
+}
+
+.toast strong {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: .02em;
+}
+
+.toast .toast-sub {
+    display: block;
+    margin-top: 4px;
+    color: var(--sand);
+    font-size: 12.5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .course-card,
+    .custom-reveal,
+    #start-round,
+    .toast {
+        transition: none;
+    }
+}
