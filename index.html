@@ -9,13 +9,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <!-- Link to your new CSS file -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="scorecard.css">
 </head>
 
 <body>
 
-    <div class="screen">
+    <!-- ================= STEP 1: ROUND SETUP (course + hole count) ================= -->
+    <div class="screen active" id="screen-course-select">
+
         <header>
             <p class="eyebrow">Golf Tracker · Round Setup</p>
             <h1>Choose your course</h1>
@@ -27,69 +29,122 @@
 
             <form id="course-form">
                 <div class="course-list">
+
                     <label class="course-option">
-                        <input type="radio" name="course" value="Hazendal Golf Course">
-                        <span class="course-card">
-                            <span class="hole-mark">HZ</span>
-                            <span class="course-copy">
-                                <p class="course-name">Hazendal Golf Course</p>
-                                <p class="course-meta">18 holes · Par 72</p>
+                        <span class="hit-area">
+                            <input type="radio" name="course" value="Hazendal Golf Course">
+                            <span class="course-card">
+                                <span class="hole-mark">HZ</span>
+                                <span class="course-copy">
+                                    <p class="course-name">Hazendal Golf Course</p>
+                                    <p class="course-meta">18 holes · Par 72</p>
+                                </span>
+                                <svg class="check-flag" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
+                                        stroke-linejoin="round" stroke-linecap="round" />
+                                </svg>
                             </span>
-                            <svg class="check-flag" viewBox="0 0 24 24" fill="none">
-                                <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
-                                    stroke-linejoin="round" stroke-linecap="round" />
-                            </svg>
                         </span>
                     </label>
 
                     <label class="course-option">
-                        <input type="radio" name="course" value="Randburg Golf Club">
-                        <span class="course-card">
-                            <span class="hole-mark">RB</span>
-                            <span class="course-copy">
-                                <p class="course-name">Randburg Golf Club</p>
-                                <p class="course-meta">18 holes · Par 71</p>
+                        <span class="hit-area">
+                            <input type="radio" name="course" value="Randburg Golf Club">
+                            <span class="course-card">
+                                <span class="hole-mark">RB</span>
+                                <span class="course-copy">
+                                    <p class="course-name">Randburg Golf Club</p>
+                                    <p class="course-meta">18 holes · Par 71</p>
+                                </span>
+                                <svg class="check-flag" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
+                                        stroke-linejoin="round" stroke-linecap="round" />
+                                </svg>
                             </span>
-                            <svg class="check-flag" viewBox="0 0 24 24" fill="none">
-                                <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
-                                    stroke-linejoin="round" stroke-linecap="round" />
-                            </svg>
                         </span>
                     </label>
 
                     <label class="course-option">
-                        <input type="radio" name="course" value="Rondebosch Golf Club">
-                        <span class="course-card">
-                            <span class="hole-mark">RC</span>
-                            <span class="course-copy">
-                                <p class="course-name">Rondebosch Golf Club</p>
-                                <p class="course-meta">18 holes · Par 70</p>
+                        <span class="hit-area">
+                            <input type="radio" name="course" value="Rondebosch Golf Club">
+                            <span class="course-card">
+                                <span class="hole-mark">RC</span>
+                                <span class="course-copy">
+                                    <p class="course-name">Rondebosch Golf Club</p>
+                                    <p class="course-meta">18 holes · Par 70</p>
+                                </span>
+                                <svg class="check-flag" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
+                                        stroke-linejoin="round" stroke-linecap="round" />
+                                </svg>
                             </span>
-                            <svg class="check-flag" viewBox="0 0 24 24" fill="none">
-                                <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
-                                    stroke-linejoin="round" stroke-linecap="round" />
-                            </svg>
                         </span>
                     </label>
 
                     <label class="course-option">
-                        <input type="radio" name="course" value="__custom__" id="custom-radio">
-                        <span class="course-card">
-                            <span class="hole-mark">+</span>
-                            <span class="course-copy">
-                                <p class="course-name">Other course</p>
-                                <p class="course-meta">Type in a name</p>
+                        <span class="hit-area">
+                            <input type="radio" name="course" value="__custom__" id="custom-radio">
+                            <span class="course-card">
+                                <span class="hole-mark">+</span>
+                                <span class="course-copy">
+                                    <p class="course-name">Other course</p>
+                                    <p class="course-meta">Type in a name</p>
+                                </span>
+                                <svg class="check-flag" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
+                                        stroke-linejoin="round" stroke-linecap="round" />
+                                </svg>
                             </span>
-                            <svg class="check-flag" viewBox="0 0 24 24" fill="none">
-                                <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
-                                    stroke-linejoin="round" stroke-linecap="round" />
-                            </svg>
                         </span>
                         <div class="custom-reveal">
                             <input class="custom-input" type="text" id="custom-name"
                                 placeholder="e.g. Milnerton Golf Club" maxlength="60" autocomplete="off">
                         </div>
                     </label>
+
+                </div>
+
+                <!-- NEW: Round Length. Reuses the exact course-option/course-card/
+           hole-mark/check-flag classes above so it's visually identical
+           to the course cards — no new visual language. -->
+                <p class="section-label"><span class="num">2</span> Round Length</p>
+
+                <div class="course-list">
+
+                    <label class="course-option">
+                        <span class="hit-area">
+                            <input type="radio" name="holeCount" value="9" checked>
+                            <span class="course-card">
+                                <span class="hole-mark">9</span>
+                                <span class="course-copy">
+                                    <p class="course-name">9 Holes</p>
+                                    <p class="course-meta">Quick round</p>
+                                </span>
+                                <svg class="check-flag" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
+                                        stroke-linejoin="round" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                        </span>
+                    </label>
+
+                    <label class="course-option">
+                        <span class="hit-area">
+                            <input type="radio" name="holeCount" value="18">
+                            <span class="course-card">
+                                <span class="hole-mark">18</span>
+                                <span class="course-copy">
+                                    <p class="course-name">18 Holes</p>
+                                    <p class="course-meta">Full round</p>
+                                </span>
+                                <svg class="check-flag" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 4v16M6 4h9l-2 3 2 3H6" stroke="#C1401F" stroke-width="2"
+                                        stroke-linejoin="round" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                        </span>
+                    </label>
+
                 </div>
 
                 <dl class="ledger">
@@ -118,13 +173,121 @@
 
         <div class="toast" id="toast" role="status" aria-live="polite">
             <strong id="toast-title"></strong>
-            <span class="toast-sub">Round session initialized in memory — Screen 2 (Scorecard) is not yet built.</span>
+            <span class="toast-sub" id="toast-sub"></span>
         </div>
 
     </div>
 
-    <!-- Link to your new JS file -->
-    <script src="app.js"></script>
+    <!-- ================= STEP 2: LIVE SCORECARD ================= -->
+    <div class="screen" id="screen-scorecard">
+        <header>
+            <p class="eyebrow">Golf Tracker · Live Scorecard</p>
+            <h1 id="scorecard-course-name">Course</h1>
+            <p class="subhead"><a href="#" id="back-to-course-link">&larr; Change course</a></p>
+        </header>
+
+        <main id="scorecard-main">
+            <!-- Populated by scorecard.js -->
+        </main>
+    </div>
+
+    <script>
+        // ---- Step 1: in-memory round session ----
+        const roundSession = { course: null, holeCount: 9, date: null, player: "Lwando", started: false };
+
+        const dateEl = document.getElementById('today-date');
+        const today = new Date();
+        dateEl.textContent = today.toLocaleDateString('en-ZA', { day: 'numeric', month: 'short', year: 'numeric' });
+        roundSession.date = today.toISOString().slice(0, 10);
+
+        const form = document.getElementById('course-form');
+        const customRadio = document.getElementById('custom-radio');
+        const customInput = document.getElementById('custom-name');
+        const startBtn = document.getElementById('start-round');
+        const ctaHint = document.getElementById('cta-hint');
+        const toast = document.getElementById('toast');
+        const toastTitle = document.getElementById('toast-title');
+        const toastSub = document.getElementById('toast-sub');
+
+        const screenCourse = document.getElementById('screen-course-select');
+        const screenScorecard = document.getElementById('screen-scorecard');
+        const scorecardTitle = document.getElementById('scorecard-course-name');
+        const backLink = document.getElementById('back-to-course-link');
+
+        function currentCourseName() {
+            const checked = form.querySelector('input[name="course"]:checked');
+            if (!checked) return null;
+            if (checked.value === '__custom__') {
+                const name = customInput.value.trim();
+                return name.length ? name : null;
+            }
+            return checked.value;
+        }
+
+        function currentHoleCount() {
+            const checked = form.querySelector('input[name="holeCount"]:checked');
+            return checked ? parseInt(checked.value, 10) : 9;
+        }
+
+        function refreshState() {
+            const name = currentCourseName();
+            startBtn.disabled = !name;
+            ctaHint.textContent = name ? `Ready to tee off at ${name}` : 'Select a course to continue';
+        }
+
+        form.addEventListener('change', refreshState);
+        customInput.addEventListener('input', refreshState);
+
+        customRadio.addEventListener('change', () => {
+            if (customRadio.checked) setTimeout(() => customInput.focus(), 180);
+        });
+
+        startBtn.addEventListener('click', () => {
+            const name = currentCourseName();
+            if (!name) return;
+            const holeCount = currentHoleCount();
+
+            roundSession.course = name;
+            roundSession.holeCount = holeCount;
+            roundSession.started = true;
+
+            toastTitle.textContent = `Round started — ${name}`;
+            toastSub.textContent = `${holeCount} holes · Loading scorecard…`;
+            toast.classList.add('show');
+
+            startBtn.disabled = true;
+            startBtn.textContent = 'Round in progress…';
+
+            setTimeout(() => {
+                screenCourse.classList.remove('active');
+                screenScorecard.classList.add('active');
+                scorecardTitle.textContent = name;
+
+                if (typeof window.GolfTracker !== 'undefined' && typeof window.GolfTracker.initScorecard === 'function') {
+                    window.GolfTracker.initScorecard(name, holeCount);
+                }
+            }, 650);
+        });
+
+        backLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            screenScorecard.classList.remove('active');
+            screenCourse.classList.add('active');
+            toast.classList.remove('show');
+            startBtn.disabled = false;
+            startBtn.innerHTML = `
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 3v18M6 3h11l-2.5 3.5L17 10H6" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+      Start round`;
+            refreshState();
+        });
+
+        refreshState();
+    </script>
+
+    <!-- Step 2 module -->
+    <script src="scorecard.js"></script>
 </body>
 
 </html>

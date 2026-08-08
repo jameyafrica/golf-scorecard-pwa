@@ -1,3 +1,13 @@
+/* styles.css — Step 1 visual identity, restored exactly from the approved
+   step1-course-selection.html, split out for reuse across the SPA shell.
+   The ONLY deviations from that file are:
+     1. A `.hit-area` wrapper + `:has()` reveal selector, replacing the
+        full-label absolute radio overlay that was swallowing taps/keystrokes
+        meant for the "Other course" text field (see bug ticket).
+     2. New `.holecount-list` block, which reuses the exact `.course-*`
+        classes below so the 9/18 toggle is visually identical to the
+        course cards — no new visual language introduced. */
+
 :root {
     --fairway: #17352A;
     /* deep fairway green, headers/nav */
@@ -12,7 +22,13 @@
     --paper: #F1ECDC;
     /* page background */
     --ok-green: #2F6B45;
+    --muted: #5B6B5F;
+    --tint: #F3F0DF;
+    /* selected-state card tint */
     --shadow: 0 1px 0 rgba(14, 36, 28, 0.06);
+    --font-head: 'Oswald', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
 }
 
 * {
@@ -30,22 +46,28 @@ body {
     background-image:
         repeating-linear-gradient(180deg, transparent 0 39px, rgba(14, 36, 28, 0.045) 39px 40px);
     color: var(--fairway-deep);
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
     display: flex;
     justify-content: center;
 }
 
+/* Each step of the app is a full .screen; only one is shown at a time. */
 .screen {
     width: 100%;
     max-width: 480px;
     min-height: 100vh;
     background: transparent;
-    display: flex;
+    display: none;
     flex-direction: column;
 }
 
+.screen.active {
+    display: flex;
+}
+
+/* ---------- Header: scoreboard strip ---------- */
 header {
     background: var(--fairway);
     color: var(--turf-card);
@@ -66,7 +88,7 @@ header::after {
 }
 
 .eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: .16em;
     text-transform: uppercase;
@@ -75,7 +97,7 @@ header::after {
 }
 
 h1 {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-head);
     font-weight: 700;
     font-size: 30px;
     letter-spacing: .01em;
@@ -91,6 +113,13 @@ h1 {
     max-width: 34ch;
 }
 
+.subhead a {
+    color: var(--sand);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* ---------- Body ---------- */
 main {
     flex: 1;
     padding: 22px 20px 120px;
@@ -100,7 +129,7 @@ main {
     display: flex;
     align-items: baseline;
     gap: 10px;
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-head);
     font-weight: 600;
     font-size: 13px;
     letter-spacing: .12em;
@@ -109,8 +138,12 @@ main {
     margin: 0 0 14px;
 }
 
+.section-label:not(:first-child) {
+    margin-top: 26px;
+}
+
 .section-label .num {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 12px;
     color: var(--flag-red);
     border: 1px solid var(--flag-red);
@@ -125,6 +158,7 @@ main {
     background: var(--sand);
 }
 
+/* Course option cards — thumb-sized tap targets, not a cramped dropdown */
 .course-list {
     display: flex;
     flex-direction: column;
@@ -136,7 +170,16 @@ main {
     position: relative;
 }
 
-.course-option input {
+/* BUGFIX: the radio input's hit area is now scoped to `.hit-area`
+   (the card only) instead of the whole label, so it can no longer
+   sit on top of `.custom-reveal` and intercept taps/keystrokes meant
+   for the text field. */
+.hit-area {
+    position: relative;
+    display: block;
+}
+
+.hit-area input {
     position: absolute;
     opacity: 0;
     width: 100%;
@@ -159,17 +202,17 @@ main {
     transition: border-color .12s ease, background .12s ease, transform .08s ease;
 }
 
-.course-option input:checked+.course-card {
+.hit-area input:checked+.course-card {
     border-color: var(--fairway);
-    background: #F3F0DF;
+    background: var(--tint);
 }
 
-.course-option input:focus-visible+.course-card {
+.hit-area input:focus-visible+.course-card {
     outline: 3px solid var(--flag-red);
     outline-offset: 2px;
 }
 
-.course-option input:active+.course-card {
+.hit-area input:active+.course-card {
     transform: scale(0.99);
 }
 
@@ -182,14 +225,14 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 13px;
     font-weight: 500;
     color: var(--fairway);
     transition: background .12s ease, color .12s ease;
 }
 
-.course-option input:checked+.course-card .hole-mark {
+.hit-area input:checked+.course-card .hole-mark {
     background: var(--fairway);
     color: var(--turf-card);
 }
@@ -200,7 +243,7 @@ main {
 }
 
 .course-name {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-head);
     font-weight: 600;
     font-size: 16.5px;
     letter-spacing: .01em;
@@ -208,9 +251,9 @@ main {
 }
 
 .course-meta {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 11.5px;
-    color: #5B6B5F;
+    color: var(--muted);
     margin: 0;
 }
 
@@ -222,24 +265,26 @@ main {
     transition: opacity .12s ease;
 }
 
-.course-option input:checked+.course-card .check-flag {
+.hit-area input:checked+.course-card .check-flag {
     opacity: 1;
 }
 
+/* Custom course reveal — now driven by :has() on the option itself,
+   since the radio no longer shares a parent with .custom-reveal. */
 .custom-reveal {
     max-height: 0;
     overflow: hidden;
     transition: max-height .18s ease;
 }
 
-.course-option input:checked~.custom-reveal {
+.course-option:has(.hit-area input:checked) .custom-reveal {
     max-height: 70px;
 }
 
 .custom-input {
     margin-top: 10px;
     width: 100%;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: var(--font-body);
     font-size: 15px;
     padding: 13px 14px;
     border: 1.5px solid var(--sand);
@@ -257,6 +302,7 @@ main {
     color: #9AA394;
 }
 
+/* Round date/tee-time ledger line — small utility info */
 .ledger {
     display: flex;
     justify-content: space-between;
@@ -269,17 +315,17 @@ main {
 }
 
 .ledger dt {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: .1em;
     text-transform: uppercase;
-    color: #5B6B5F;
+    color: var(--muted);
     margin: 0 0 3px;
 }
 
 .ledger dd {
     margin: 0;
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-head);
     font-weight: 600;
     font-size: 15px;
 }
@@ -292,6 +338,7 @@ main {
     text-align: right;
 }
 
+/* ---------- Fixed CTA (thumb reach) ---------- */
 .cta-dock {
     position: fixed;
     left: 0;
@@ -303,18 +350,18 @@ main {
     background: linear-gradient(180deg, rgba(241, 236, 220, 0) 0%, var(--paper) 28%);
 }
 
-#start-round {
+.cta-dock button {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     background: var(--flag-red);
-    color: #FBF8EF;
+    color: var(--turf-card);
     border: none;
     border-radius: 8px;
     padding: 17px 18px;
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-head);
     font-weight: 600;
     font-size: 16px;
     letter-spacing: .06em;
@@ -323,29 +370,30 @@ main {
     transition: opacity .12s ease, transform .08s ease;
 }
 
-#start-round:disabled {
+.cta-dock button:disabled {
     background: #B8AF95;
     box-shadow: none;
     opacity: .75;
 }
 
-#start-round:not(:disabled):active {
+.cta-dock button:not(:disabled):active {
     transform: scale(0.98);
 }
 
-#start-round:focus-visible {
+.cta-dock button:focus-visible {
     outline: 3px solid var(--fairway);
     outline-offset: 3px;
 }
 
 .cta-hint {
     text-align: center;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 11px;
-    color: #5B6B5F;
+    color: var(--muted);
     margin: 8px 0 0;
 }
 
+/* ---------- Toast confirming in-memory session start ---------- */
 .toast {
     position: fixed;
     left: 20px;
@@ -357,7 +405,7 @@ main {
     color: var(--turf-card);
     border-radius: 8px;
     padding: 16px 18px;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     box-shadow: 0 10px 30px rgba(14, 36, 28, 0.35);
     transition: bottom .28s cubic-bezier(.2, .8, .2, 1);
@@ -369,7 +417,7 @@ main {
 }
 
 .toast strong {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-head);
     letter-spacing: .02em;
 }
 
@@ -384,7 +432,7 @@ main {
 
     .course-card,
     .custom-reveal,
-    #start-round,
+    .cta-dock button,
     .toast {
         transition: none;
     }

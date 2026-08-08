@@ -1,0 +1,265 @@
+/* scorecard.css — Step 2: Live Scorecard Interface
+   Uses the exact tokens and card language defined in styles.css
+   (--fairway, --turf-card, --sand, --flag-red, --paper, --ok-green,
+   --font-head/--font-body/--font-mono). No new visual language. */
+
+#scorecard-main {
+    padding-top: 2px;
+}
+
+/* ---------- Hole navigator ---------- */
+.hole-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.hole-nav-btn {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--fairway);
+    background: var(--turf-card);
+    color: var(--fairway);
+    font-family: var(--font-head);
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+}
+
+.hole-nav-btn:disabled {
+    opacity: 0.35;
+}
+
+.hole-nav-btn:active:not(:disabled) {
+    background: var(--fairway);
+    color: var(--turf-card);
+}
+
+.hole-nav-center {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.hole-nav-center .hole-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    color: var(--muted);
+}
+
+.hole-nav-center .hole-number {
+    font-family: var(--font-head);
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--fairway-deep);
+    line-height: 1.1;
+}
+
+/* Quick-jump strip — same border/radius language as course cards */
+.hole-strip {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.hole-strip button {
+    aspect-ratio: 1/1;
+    border-radius: 6px;
+    border: 1.5px solid var(--sand);
+    background: var(--turf-card);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0;
+}
+
+.hole-strip button.is-current {
+    border-color: var(--fairway);
+    background: var(--fairway);
+    color: var(--turf-card);
+}
+
+.hole-strip button.is-filled:not(.is-current) {
+    border-color: var(--fairway);
+    color: var(--fairway);
+    background: var(--tint);
+}
+
+/* ---------- Cards (identical language to .course-card) ---------- */
+.sc-card {
+    background: var(--turf-card);
+    border: 1.5px solid var(--sand);
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+}
+
+.sc-card-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--fairway);
+    font-weight: 500;
+    margin: 0 0 12px;
+}
+
+/* Stepper (Par / Strokes) */
+.stepper-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.stepper-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 6px;
+    border: 1.5px solid var(--fairway);
+    background: var(--turf-card);
+    color: var(--fairway);
+    font-family: var(--font-head);
+    font-size: 1.4rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stepper-btn:active {
+    background: var(--fairway);
+    color: var(--turf-card);
+}
+
+.stepper-value {
+    min-width: 60px;
+    text-align: center;
+    font-family: var(--font-head);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--fairway-deep);
+}
+
+/* Score badge */
+.score-badge {
+    margin-top: 10px;
+    text-align: center;
+    font-family: var(--font-head);
+    font-weight: 600;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 8px;
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--fairway-deep);
+    border: 1px solid var(--sand);
+}
+
+.score-badge.birdie {
+    background: var(--tint);
+    color: var(--ok-green);
+    border-color: var(--fairway);
+}
+
+.score-badge.bogey {
+    background: #F7E4DC;
+    color: var(--flag-red);
+    border-color: var(--flag-red);
+}
+
+/* Club selection grid */
+.club-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.club-btn {
+    padding: 11px 4px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    border: 1.5px solid var(--sand);
+    border-radius: 6px;
+    background: var(--turf-card);
+    color: var(--fairway-deep);
+}
+
+.club-btn.selected {
+    border-color: var(--fairway);
+    background: var(--fairway);
+    color: var(--turf-card);
+}
+
+/* Shot direction toggles */
+.direction-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.direction-btn {
+    padding: 13px 2px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: center;
+    border: 1.5px solid var(--sand);
+    border-radius: 6px;
+    background: var(--turf-card);
+    color: var(--fairway-deep);
+}
+
+.direction-btn.selected {
+    border-color: var(--fairway);
+    background: var(--fairway);
+    color: var(--turf-card);
+}
+
+/* Photo capture placeholder (arrives Step 3) */
+.photo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    border: 1.5px dashed var(--sand);
+    border-radius: 6px;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.85rem;
+    background: var(--paper);
+}
+
+/* Round summary CTA (activated Step 4) */
+.summary-cta {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    margin-top: 4px;
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--turf-card);
+    background: var(--muted);
+    border: none;
+    border-radius: 8px;
+}
