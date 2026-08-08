@@ -11,6 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="scorecard.css">
+    <link rel="stylesheet" href="summary.css">
 </head>
 
 <body>
@@ -198,6 +199,19 @@
         </main>
     </div>
 
+    <!-- ================= STEP 4: ROUND SUMMARY ================= -->
+    <div class="screen" id="screen-summary">
+        <header>
+            <p class="eyebrow">Golf Tracker · Round Summary</p>
+            <h1 id="summary-course-name">Course</h1>
+            <p class="subhead"><a href="#" id="back-to-scorecard-link">&larr; Back to scorecard</a></p>
+        </header>
+    
+        <main id="summary-main">
+            <!-- Populated by summary.js -->
+        </main>
+    </div>
+
     <script>
       // ---- Splash Screen Logic ----
         const puns = [
@@ -327,7 +341,33 @@
         });
 
         refreshState();
+const screenSummary   = document.getElementById('screen-summary');
+  const summaryTitle    = document.getElementById('summary-course-name');
+  const backToScorecardLink = document.getElementById('back-to-scorecard-link');
+
+  // ---- Step 4: navigate from scorecard to the Round Summary screen ----
+  window.GolfTracker = window.GolfTracker || {};
+  window.GolfTracker.goToSummary = function () {
+    const holes = (typeof window.GolfTracker.getHoles === 'function') ? window.GolfTracker.getHoles() : [];
+    const name = roundSession.course || 'Round';
+
+    document.getElementById('screen-scorecard').classList.remove('active');
+    screenSummary.classList.add('active');
+    summaryTitle.textContent = name;
+
+    if (typeof window.GolfTracker.initSummary === 'function') {
+      window.GolfTracker.initSummary(name, roundSession.holeCount, holes);
+    }
+  };
+
+  backToScorecardLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    screenSummary.classList.remove('active');
+    document.getElementById('screen-scorecard').classList.add('active');
+  });
+
     </script>
+    <script src="summary.js"></script>
 
     <!-- Step 2 module -->
     <script src="scorecard.js"></script>

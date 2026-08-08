@@ -1,0 +1,181 @@
+/* summary.css — Step 4: End-of-Round Summary Engine
+   Uses the exact tokens and card language from styles.css / scorecard.css.
+   No new visual language introduced. */
+
+#summary-main {
+    padding-top: 2px;
+}
+
+.incomplete-banner {
+    background: var(--paper);
+    border: 1.5px dashed var(--sand);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* ---------- Total Score ---------- */
+.total-score-card {
+    text-align: center;
+}
+
+.total-score-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.total-score-strokes {
+    font-family: var(--font-head);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--fairway-deep);
+    line-height: 1;
+}
+
+.total-score-diff {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 4px;
+}
+
+.total-score-diff.over {
+    background: #F7E4DC;
+    color: var(--flag-red);
+}
+
+.total-score-diff.under {
+    background: var(--tint);
+    color: var(--ok-green);
+}
+
+.total-score-diff.even {
+    background: var(--paper);
+    color: var(--fairway);
+    border: 1px solid var(--sand);
+}
+
+.total-score-sub {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 10px 0 0;
+}
+
+/* ---------- Score Tally ---------- */
+.tally-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.tally-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 16px 8px;
+    border-radius: 6px;
+    border: 1.5px solid var(--sand);
+    background: var(--paper);
+}
+
+.tally-count {
+    font-family: var(--font-head);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--fairway-deep);
+}
+
+.tally-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--muted);
+    text-align: center;
+}
+
+.tally-birdie {
+    background: var(--tint);
+    border-color: var(--fairway);
+}
+
+.tally-birdie .tally-count {
+    color: var(--ok-green);
+}
+
+.tally-bogey {
+    border-color: var(--sand);
+}
+
+.tally-double {
+    background: #F7E4DC;
+    border-color: var(--flag-red);
+}
+
+.tally-double .tally-count {
+    color: var(--flag-red);
+}
+
+/* ---------- Photo Gallery ---------- */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.photo-gallery-cell {
+    position: relative;
+    aspect-ratio: 1/1;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1.5px solid var(--sand);
+}
+
+.photo-gallery-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-gallery-tag {
+    position: absolute;
+    left: 4px;
+    bottom: 4px;
+    background: rgba(14, 36, 28, 0.72);
+    color: var(--turf-card);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+/* ---------- Save Round (stub, wired in Step 5) ---------- */
+.save-round-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    margin-top: 4px;
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--turf-card);
+    background: #B8AF95;
+    border: none;
+    border-radius: 8px;
+    opacity: .85;
+    cursor: not-allowed;
+}

@@ -1,6 +1,7 @@
-// scorecard.js — Step 2: Live Scorecard Interface
+// scorecard.js — Step 2: Live Scorecard Interface + Step 3: Photo Capture
 // In-memory state only. IndexedDB persistence arrives in Step 5.
-// Photo capture button is a disabled placeholder until Step 3.
+// Photos are captured via the native camera (input[type=file][capture])
+// and held as data URLs in memory — no upload, no disk write yet.
 
 (function () {
   const CLUBS = [
@@ -98,7 +99,7 @@
         </div>
       </div>
 
-     <div class="sc-card">
+      <div class="sc-card">
         <p class="sc-card-title">Photo</p>
         ${hole.photo ? `
           <div class="photo-preview">
@@ -121,8 +122,8 @@
           class="photo-input-hidden">
       </div>
 
-      <button type="button" class="summary-cta" id="summary-btn" disabled>
-        Round Summary (${filledCount}/${holeCount} holes) &mdash; Step 4
+      <button type="button" class="summary-cta" id="summary-btn">
+        View Round Summary (${filledCount}/${holeCount} holes)
       </button>
     `;
 
@@ -216,6 +217,13 @@
         render();
       });
     }
+
+    // ---- Round Summary (Step 4) ----
+    document.getElementById('summary-btn').addEventListener('click', () => {
+      if (typeof window.GolfTracker.goToSummary === 'function') {
+        window.GolfTracker.goToSummary();
+      }
+    });
   }
 
   function initScorecard(selectedCourseName, selectedHoleCount) {
