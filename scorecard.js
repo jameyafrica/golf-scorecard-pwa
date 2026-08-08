@@ -98,9 +98,27 @@
         </div>
       </div>
 
-      <div class="sc-card">
+     <div class="sc-card">
         <p class="sc-card-title">Photo</p>
-        <div class="photo-placeholder">📷 Camera capture arrives in Step 3</div>
+        ${hole.photo ? `
+          <div class="photo-preview">
+            <img src="${hole.photo}" alt="Photo captured for hole ${hole.number}">
+            <div class="photo-actions">
+              <button type="button" class="photo-action-btn" id="photo-retake-btn">Retake</button>
+              <button type="button" class="photo-action-btn photo-remove-btn" id="photo-remove-btn">Remove</button>
+            </div>
+          </div>
+        ` : `
+          <label class="photo-capture-btn" for="photo-input">
+            📷 Capture Photo
+          </label>
+        `}
+        <input
+          type="file"
+          accept="image/*"
+          capture="camera"
+          id="photo-input"
+          class="photo-input-hidden">
       </div>
 
       <button type="button" class="summary-cta" id="summary-btn" disabled>
@@ -171,6 +189,33 @@
         render();
       });
     });
+
+    // ---- Photo capture (Step 3) ----
+    const photoInput = document.getElementById('photo-input');
+    photoInput.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        hole.photo = reader.result; // data URL, held in memory only
+        render();
+      };
+      reader.readAsDataURL(file);
+    });
+
+    const retakeBtn = document.getElementById('photo-retake-btn');
+    if (retakeBtn) {
+      retakeBtn.addEventListener('click', () => photoInput.click());
+    }
+
+    const removeBtn = document.getElementById('photo-remove-btn');
+    if (removeBtn) {
+      removeBtn.addEventListener('click', () => {
+        hole.photo = null;
+        render();
+      });
+    }
   }
 
   function initScorecard(selectedCourseName, selectedHoleCount) {

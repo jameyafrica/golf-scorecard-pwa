@@ -231,8 +231,16 @@
     color: var(--turf-card);
 }
 
-/* Photo capture placeholder (arrives Step 3) */
-.photo-placeholder {
+.photo-input-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.photo-capture-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,11 +248,65 @@
     padding: 16px;
     border: 1.5px dashed var(--sand);
     border-radius: 6px;
-    color: var(--muted);
+    color: var(--fairway);
     font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 0.85rem;
+    font-weight: 600;
+    font-size: 0.9rem;
     background: var(--paper);
+    cursor: pointer;
+}
+
+.photo-capture-btn:active {
+    border-color: var(--fairway);
+    background: var(--tint);
+}
+
+.photo-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.photo-preview img {
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1.5px solid var(--sand);
+    display: block;
+}
+
+.photo-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.photo-action-btn {
+    padding: 11px 4px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+    border: 1.5px solid var(--fairway);
+    border-radius: 6px;
+    background: var(--turf-card);
+    color: var(--fairway);
+}
+
+.photo-action-btn:active {
+    background: var(--fairway);
+    color: var(--turf-card);
+}
+
+.photo-remove-btn {
+    border-color: var(--flag-red);
+    color: var(--flag-red);
+}
+
+.photo-remove-btn:active {
+    background: var(--flag-red);
+    color: var(--turf-card);
 }
 
 /* Round summary CTA (activated Step 4) */
