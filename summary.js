@@ -131,3 +131,36 @@
 document.getElementById('home-btn')?.addEventListener('click', () => {
   showScreen('course-screen'); // matches the toggle used by past-rounds-btn / history-back-link
 });
+
+function calculateShotStats(holes) {
+  const played = holes.filter((h) => h.direction);
+  const totalShots = played.length;
+  if (totalShots === 0) return { landedPct: 0, missedPct: 0, totalShots: 0 };
+
+  const landed = played.filter((h) => ['straight', 'draw', 'fade'].includes(h.direction)).length;
+  const missed = totalShots - landed;
+
+  return {
+    totalShots,
+    landedPct: Math.round((landed / totalShots) * 100),
+    missedPct: Math.round((missed / totalShots) * 100),
+  };
+}
+
+function calculateDirectionStats(holes) {
+  const directions = ['slice', 'fade', 'straight', 'draw', 'hook'];
+  const played = holes.filter((h) => h.direction);
+  const total = played.length;
+
+  const counts = directions.reduce((acc, dir) => {
+    acc[dir] = played.filter((h) => h.direction === dir).length;
+    return acc;
+  }, {});
+
+  const percentages = {};
+  directions.forEach((dir) => {
+    percentages[dir] = total === 0 ? 0 : Math.round((counts[dir] / total) * 100);
+  });
+
+  return percentages; // e.g. { slice: 20, fade: 10, straight: 40, draw: 20, hook: 10 }
+}
