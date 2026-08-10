@@ -127,3 +127,4 @@
   window.GolfTracker = window.GolfTracker || {};
   window.GolfTracker.initSummary = initSummary;
 })();
+
