@@ -31,6 +31,7 @@
     });
 
     const photos = holes.filter(h => h.photo);
+    renderStatsBars(calculateDirectionStats(holes));
 
     root.innerHTML = `
       ${!isComplete ? `
@@ -128,9 +129,7 @@
   window.GolfTracker.initSummary = initSummary;
 })();
 
-document.getElementById('home-btn')?.addEventListener('click', () => {
-  showScreen('course-screen'); // matches the toggle used by past-rounds-btn / history-back-link
-});
+
 
 function calculateShotStats(holes) {
   const played = holes.filter((h) => h.direction);
@@ -164,3 +163,22 @@ function calculateDirectionStats(holes) {
 
   return percentages; // e.g. { slice: 20, fade: 10, straight: 40, draw: 20, hook: 10 }
 }
+
+function renderStatsBars(stats) {
+  // stats: a flat object like { landed: 70, missed: 30 } or the direction-stats object
+  const container = document.getElementById('stats-bars');
+  if (!container) return;
+
+  container.innerHTML = Object.entries(stats)
+    .map(([label, pct]) => `
+      <div class="stat-row">
+        <span class="stat-label">${label}</span>
+        <div class="stat-track">
+          <div class="stat-fill" style="width: ${pct}%;"></div>
+        </div>
+        <span class="stat-pct">${pct}%</span>
+      </div>
+    `)
+    .join('');
+}
+
