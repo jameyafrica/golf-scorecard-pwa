@@ -437,3 +437,12 @@ main {
         transition: none;
     }
 }
+
+#save-round-btn {
+    cursor: pointer;
+}
+
+#save-round-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
