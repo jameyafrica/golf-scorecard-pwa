@@ -456,3 +456,15 @@ main {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
+.btn-home {
+    background: transparent;
+    border: 1px solid var(--sand);
+    border-radius: 6px;
+    color: var(--fairway);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 6px 12px;
+    cursor: pointer;
+}

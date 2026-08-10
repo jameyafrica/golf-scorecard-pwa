@@ -226,8 +226,12 @@
         <header>
             <p class="eyebrow">Golf Tracker · Round Summary</p>
             <h1 id="summary-course-name">Course</h1>
-            <button type="button" id="home-btn" class="btn-secondary">← Back to Home</button>
+            <button type="button" id="home-btn" class="btn-home">← Home</button>
             <p class="subhead"><a href="#" id="back-to-scorecard-link">&larr; Back to scorecard</a></p>
+            document.getElementById('home-btn').addEventListener('click', () => {
+            screenSummary.classList.remove('active');
+            document.getElementById('screen-course-select').classList.add('active');
+            });
         </header>
     
         <main id="summary-main">
