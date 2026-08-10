@@ -168,11 +168,7 @@
                         <dd>Lwando</dd>
                     </div>
                     </div>
-                    <div>
-                        <dt>Handicap</dt>
-                        <dd><input type="number" id="handicap-input" class="ledger-input" min="0" max="54" value="0" inputmode="numeric">
-                        </dd>
-                    </div>
+                    
                 </dl>
             </form>
         </main>
@@ -344,7 +340,6 @@
 
             roundSession.course = name;
             roundSession.holeCount = holeCount;
-            roundSession.handicap = Number(document.getElementById('handicap-input').value) || 0;
             roundSession.started = true;
 
             toastTitle.textContent = `Round started — ${name}`;
