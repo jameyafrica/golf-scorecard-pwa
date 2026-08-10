@@ -446,3 +446,13 @@ main {
     cursor: not-allowed;
     opacity: 0.5;
 }
+
+#past-rounds-btn {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--fairway);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
