@@ -128,3 +128,6 @@
   window.GolfTracker.initSummary = initSummary;
 })();
 
+document.getElementById('home-btn')?.addEventListener('click', () => {
+  showScreen('course-screen'); // matches the toggle used by past-rounds-btn / history-back-link
+});
