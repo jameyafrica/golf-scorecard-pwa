@@ -29,5 +29,27 @@ A mobile-first Progressive Web App (PWA) designed for golfers to track scores, s
 To run or inspect this project locally:
 
 1. Clone the repository:
-   ```bash
-   git clone [https://github.com/jameyafrica/golf-scorecard-pwa.git](https://github.com/jameyafrica/golf-scorecard-pwa.git)
+
+    git clone [https://github.com/jameyafrica/golf-scorecard-pwa.git](https://github.com/jameyafrica/golf-scorecard-pwa.git)
+
+2. Navigate into the project directory:
+
+    cd golf-scorecard-pwa
+
+3. Run a local development server:
+
+    npx serve .
+
+---
+
+## 💡 Engineering Challenges & Learnings
+
+- **Local Persistence without Backend:** Managing complex state across multi-hole rounds using IndexedDB instead of a traditional backend database.
+- **Offline Resilience:** Configuring service workers to cache shell assets securely so the app loads instantly offline.
+- **UX Optimization:** Designing large touch targets and intuitive state navigation for outdoor mobile use under bright sunlight.
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
