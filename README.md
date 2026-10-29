@@ -31,3 +31,25 @@ To run or inspect this project locally:
 1. Clone the repository:
    ```bash
    git clone [https://github.com/jameyafrica/golf-scorecard-pwa.git](https://github.com/jameyafrica/golf-scorecard-pwa.git)
+
+
+Navigate into the project directory:
+
+Bash
+cd golf-scorecard-pwa
+Run a local development server (or open index.html directly, though PWA/Service Worker features require a local server context like Live Server in VS Code):
+
+Bash
+npx serve .
+💡 Engineering Challenges & Learnings
+Local Persistence without Backend: Managing complex state across multi-hole rounds using IndexedDB instead of a traditional backend database.
+
+Offline Resilience: Configuring service workers to cache shell assets securely so the app loads instantly offline.
+
+UX Optimization: Designing large touch targets and intuitive state navigation for outdoor mobile use under bright sunlight.
+
+📄 License
+Distributed under the MIT License. See LICENSE for more information.
+
+
+<FollowUp label="Want me to update your checklist to mark off the live demo and README items?" query="Update my tech portfolio checklist to check off the live demo and comprehensive README items."/>
