@@ -33,10 +33,10 @@ To run or inspect this project locally:
    git clone [https://github.com/jameyafrica/golf-scorecard-pwa.git](https://github.com/jameyafrica/golf-scorecard-pwa.git)
 
 
-Navigate into the project directory:
+1. Navigate into the project directory:
 
 Bash
-cd golf-scorecard-pwa
+cd golf-scorecard-pwaa
 Run a local development server (or open index.html directly, though PWA/Service Worker features require a local server context like Live Server in VS Code):
 
 Bash
