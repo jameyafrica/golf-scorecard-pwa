@@ -1,6 +1,6 @@
 # ⛳ Golf Scorecard PWA
 
-A mobile-first Progressive Web App (PWA) designed for golfers to track scores, shot directions, and round histories directly on the course—completely offline. 
+A mobile-first Progressive Web App (PWA) designed for golfers to track scores, shot directions, and round histories directly on the course—completely offline.
 
 👉 **Live Demo:** [jameyafrica.github.io/golf-scorecard-pwa](https://jameyafrica.github.io/golf-scorecard-pwa/)
 
@@ -9,7 +9,7 @@ A mobile-first Progressive Web App (PWA) designed for golfers to track scores, s
 ## 📱 Features
 
 - **Mobile-First Design:** Optimized for quick, ergonomic entry on smartphones while walking the course.
-- **Offline Capability:** Built with a Service Worker and `IndexedDB` caching, ensuring reliable performance even in remote areas with poor cellular reception.
+- **Offline Capability:** Built with a Service Worker and IndexedDB caching, ensuring reliable performance even in remote areas with poor cellular reception.
 - **Round History & Storage:** Saves past rounds locally so players can review historical scores and stats over time.
 - **PWA Installable:** Can be added directly to a phone's home screen from the browser as a standalone app.
 
@@ -31,25 +31,3 @@ To run or inspect this project locally:
 1. Clone the repository:
    ```bash
    git clone [https://github.com/jameyafrica/golf-scorecard-pwa.git](https://github.com/jameyafrica/golf-scorecard-pwa.git)
-
-
-1. Navigate into the project directory:
-
-Bash
-cd golf-scorecard-pwaa
-Run a local development server (or open index.html directly, though PWA/Service Worker features require a local server context like Live Server in VS Code):
-
-Bash
-npx serve .
-💡 Engineering Challenges & Learnings
-Local Persistence without Backend: Managing complex state across multi-hole rounds using IndexedDB instead of a traditional backend database.
-
-Offline Resilience: Configuring service workers to cache shell assets securely so the app loads instantly offline.
-
-UX Optimization: Designing large touch targets and intuitive state navigation for outdoor mobile use under bright sunlight.
-
-📄 License
-Distributed under the MIT License. See LICENSE for more information.
-
-
-<FollowUp label="Want me to update your checklist to mark off the live demo and README items?" query="Update my tech portfolio checklist to check off the live demo and comprehensive README items."/>
