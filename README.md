@@ -29,17 +29,19 @@ A mobile-first Progressive Web App (PWA) designed for golfers to track scores, s
 To run or inspect this project locally:
 
 1. Clone the repository:
-
+    ```bash
     git clone [https://github.com/jameyafrica/golf-scorecard-pwa.git](https://github.com/jameyafrica/golf-scorecard-pwa.git)
+    ```
 
 2. Navigate into the project directory:
-
+    ```bash
     cd golf-scorecard-pwa
+    ```
 
 3. Run a local development server:
-
+    ```bash
     npx serve .
-
+    ```
 ---
 
 ## 💡 Engineering Challenges & Learnings
