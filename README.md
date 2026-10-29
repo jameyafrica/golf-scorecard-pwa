@@ -1,19 +1,33 @@
-# Golf Scorecard & History Tracker (PWA)
+# ⛳ Golf Scorecard PWA
 
-## Project Overview
-A lightweight, mobile-first Progressive Web App (PWA) golf utility built for friends. The app functions offline on the golf course to record live scores, club selection, shot direction, and photos per hole, while persisting historical rounds locally.
+A mobile-first Progressive Web App (PWA) designed for golfers to track scores, shot directions, and round histories directly on the course—completely offline. 
 
-## Tech Stack & Architecture
-- **Frontend:** Vanilla JavaScript (ES6+), HTML5, CSS3
-- **Database:** `IndexedDB` (Local client-side binary storage)
-- **Media API:** Native HTML5 Camera API (`<input type="file" accept="image/*" capture="camera">`)
-- **App Shell:** PWA (`manifest.json` + Service Worker `sw.js` for offline caching)
+👉 **Live Demo:** [jameyafrica.github.io/golf-scorecard-pwa](https://jameyafrica.github.io/golf-scorecard-pwa/)
 
-## Directory Structure
-golf-scorecard-pwa/
-├── index.html        # Main app shell & screen views
-├── styles.css        # Mobile-first high-contrast CSS
-├── app.js            # App logic & IndexedDB handlers
-├── manifest.json     # PWA manifest
-├── sw.js             # Service worker for offline caching
-└── README.md         # Project documentation & architect guidelines
+---
+
+## 📱 Features
+
+- **Mobile-First Design:** Optimized for quick, ergonomic entry on smartphones while walking the course.
+- **Offline Capability:** Built with a Service Worker and `IndexedDB` caching, ensuring reliable performance even in remote areas with poor cellular reception.
+- **Round History & Storage:** Saves past rounds locally so players can review historical scores and stats over time.
+- **PWA Installable:** Can be added directly to a phone's home screen from the browser as a standalone app.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Vanilla JavaScript (ES6+), HTML5, CSS3 (Responsive layouts and modern CSS variables)
+- **Data Persistence:** IndexedDB (for structured client-side storage of rounds and scores)
+- **Offline & PWA Support:** Service Workers & Web App Manifest
+- **Hosting:** GitHub Pages
+
+---
+
+## 🚀 Getting Started Locally
+
+To run or inspect this project locally:
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/jameyafrica/golf-scorecard-pwa.git](https://github.com/jameyafrica/golf-scorecard-pwa.git)
